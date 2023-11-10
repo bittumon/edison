@@ -1,0 +1,1377 @@
+<!DOCTYPE html><html lang="en" class="zoom-75"><head>
+        <meta charset="utf-8">
+        <title>myenergy | PV Plant Dahsboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="myenergy | PV Plant Dahsboard" name="description">
+        <meta content="myenergy | PV Plant Dahsboard" name="author">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="../../assets/images/logo.png">
+
+        <!-- Jquery Toast css -->
+        <link href="../../assets/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+        <!-- third party css -->
+        <link href="../../assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css">
+        <!-- Plugins css-->
+        <link href="../../assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+        <!-- Summernote css -->
+        <link href="../../assets/libs/summernote/summernote-bs4.css" rel="stylesheet" type="text/css">
+        
+        <!-- App css -->
+        <link href="../../assets/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/admin/css/icons.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/multiselect/multi-select.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/select2/select2.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/cron/jquery-cron.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/libs/cron/gentleSelect/jquery-gentleSelect.css" rel="stylesheet" type="text/css">
+        
+        <link href="../../assets/admin/css/app.min.css" rel="stylesheet" type="text/css">
+        <link href="../../assets/admin/css/custom_v%3D2.css" rel="stylesheet" type="text/css">
+		<link href="../../assets/frontend/css/style_theme_public_v%3D3.css" rel="stylesheet" type="text/css">
+
+        <!-- Vendor js -->
+        <script src="../../assets/admin/js/vendor.min.js"></script>
+        <script src="../../assets/libs/select2/select2.min.js"></script>				<!-- Chart JS -->        <script src="../../assets/libs/chart-js/Chart.bundle.min.js"></script> 
+
+
+
+	<script>
+  		const timeList = [
+    		"00:00", "00:05", "00:10", "00:15", "00:20", "00:25", "00:30", "00:35", "00:40", "00:45", "00:50", "00:55","01:00", "01:05", "01:10", "01:15", "01:20", "01:25", "01:30", "01:35", "01:40", "01:45", "01:50", "01:55","02:00", "02:05", "02:10", "02:15", 		"02:20", "02:25", "02:30", "02:35", "02:40", "02:45", "02:50", "02:55","03:00", "03:05", "03:10", "03:15", "03:20", "03:25", "03:30", "03:35", "03:40", "03:45", "03:50", "03:55","04:00", "04:05", "04:10", "04:15", "04:20", "04:25", "04:30", "04:35", 		"04:40", "04:45", "04:50", "04:55","05:00", "05:05", "05:10", "05:15", "05:20", "05:25", "05:30", "05:35", "05:40", "05:45", "05:50", "05:55","06:00", "06:05", "06:10", "06:15", "06:20", "06:25", "06:30", "06:35", "06:40", "06:45", "06:50", 			"06:55","07:00", "07:05", "07:10", "07:15", "07:20", "07:25", "07:30", "07:35", "07:40", "07:45", "07:50", "07:55","08:00", "08:05", "08:10", "08:15", "08:20", "08:25", "08:30", "08:35", "08:40", "08:45", "08:50", "08:55","09:00", "09:05", "09:10", 		"09:15", "09:20", "09:25", "09:30", "09:35", "09:40", "09:45", "09:50", "09:55","10:00", "10:05", "10:10", "10:15", "10:20", "10:25", "10:30", "10:35", "10:40", "10:45", "10:50", "10:55","11:00", "11:05", "11:10", "11:15", "11:20", "11:25", "11:30", 		"11:35", "11:40", "11:45", "11:50", "11:55","12:00", "12:05", "12:10", "12:15", "12:20", "12:25", "12:30", "12:35", "12:40", "12:45", "12:50", "12:55","13:00", "13:05", "13:10", "13:15", "13:20", "13:25", "13:30", "13:35", "13:40", "13:45", "13:50", 		"13:55","14:00", "14:05", "14:10", "14:15", "14:20", "14:25", "14:30", "14:35", "14:40", "14:45", "14:50", "14:55", "15:00", "15:05", "15:10", "15:15", "15:20", "15:25", "15:30", "15:35", "15:40", "15:45", "15:50", "15:55","16:00", "16:05", "16:10", 		"16:15", "16:20", "16:25", "16:30", "16:35", "16:40", "16:45", "16:50", "16:55","17:00", "17:05", "17:10", "17:15", "17:20", "17:25", "17:30", "17:35", "17:40", "17:45", "17:50", "17:55","18:00", "18:05", "18:10", "18:15", "18:20", "18:25", "18:30", 		"18:35", "18:40", "18:45", "18:50", "18:55", "19:00", "19:05", "19:10", "19:15", "19:20", "19:25", "19:30", "19:35", "19:40", "19:45", "19:50", "19:55", "20:00", "20:05", "20:10", "20:15", "20:20", "20:25", "20:30", "20:35", "20:40", "20:45", "20:50", 		"20:55","21:00", "21:05", "21:10", "21:15", "21:20", "21:25", "21:30", "21:35", "21:40", "21:45", "21:50", "21:55","22:00", "22:05", "22:10", "22:15", "22:20", "22:25", "22:30", "22:35", "22:40", "22:45", "22:50", "22:55","23:00", "23:05", "23:10", 		"23:15", "23:20", "23:25", "23:30", "23:35", "23:40", "23:45", "23:50", "23:55",
+    
+    
+ 		 ];
+  
+  		const value1List = ["0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,01","0,03","0,07","0,19","0,33","0,46","0,6","0,8","0,94","1,08","1,29","1,78","1,98","2,77","2,78","2,49","3,3","3,56","4,31","5,19","5,37","5,95","6,61","8,58","9,52","10,86","11,31","11,82","12,4","12,89","13,4","13,81","14,22","14,7","15,07","15,4","15,67","16,04","16,32","16,7","16,98","17,21","17,46","17,69","17,92","18,12","18,42","18,5","18,71","18,86","18,93","19,04","19,14","19,34","19,34","19,46","19,4","19,51","19,53","19,52","19,51","19,37","19,43","19,45","19,42","19,27","19,2","19,2","19,11","18,93","18,88","18,67","18,46","18,37","18,17","17,8","17,67","17,33","17,07","16,76","16,44","15,9","15,48","15,34","15,06","14,64","14,26","13,81","13,27","12,85","12,48","12,02","11,61","10,98","10,43","9,96","9,55","9,18","8,43","8,0","7,63","6,99","6,66","6,11","5,57","5,09","4,6","4,0","3,2","2,27","1,74","1,28","1,24","1,04","0,87","0,78","0,54","0,5","0,37","0,28","0,28","0,17","0,07","0,07","0,02","0,02","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0"
+		];
+
+const number_list = ["0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,0","0,8","1,2","1,6","2,0","2,0","2,4","2,8","4,0","5,2","6,4","8,0","9,2","10,52","11,84","13,16","14,48","15,8","17,12","18,44","19,76","21,08","22,4","23,72","25,04","26,36","27,68","29,0","30,32","31,64","32,96","34,28","35,6","36,92","38,24","39,56","40,88","42,2","43,52","44,84","46,16","47,48","48,8","50,12","51,44","52,76","54,08","55,4","56,72","58,04","59,36","60,68","62,0","63,32","64,64","65,96","67,28","68,6","69,92","71,24","72,56","73,88","75,2","76,52","77,84","79,16","80,48","81,8","83,12","84,44","85,76","87,08","88,4","89,72","91,04","92,36","93,68","95,0","96,32","97,64","98,96","100,28","101,6","102,92","104,24","105,56","106,88","108,2","109,52","110,84","112,16","113,48","114,8","116,12","117,44","118,76","120,08","121,4","122,72","124,04","125,36","126,68","128,0","129,32","130,64","131,96","133,28","134,6","135,92","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","137,24","1,2","137,24","137,24","137,24"];
+
+
+function updateChart() {
+    // Automatically adjust the length of labels and data arrays
+    var currentDataLength = todayChart.labels.length;
+    todayChart.labels = todayChart.labels.slice(0, currentDataLength);
+    todayChart.datasets[0].data = todayChart.datasets[0].data.slice(0, currentDataLength);
+}
+
+
+
+
+  function roundToNextMultipleOf5(time) {
+    const timeParts = time.split(":");
+    const currentMinutes = parseInt(timeParts[0]) * 60 + parseInt(timeParts[1]);
+    const roundedMinutes = Math.ceil(currentMinutes / 5) * 5;
+    const hours = Math.floor(roundedMinutes / 60);
+    const minutes = roundedMinutes % 60;
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+  }
+
+
+function updateValue() {
+    const now = new Date();
+
+    // Adjust for the Italy (CET) time zone offset
+    const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes() + 60; // CET offset is UTC+1
+
+    // Adjust for the additional 2 hours you want to subtract
+    const adjustedMinutes = currentMinutes - 120; // Subtract 2 hours (120 minutes)
+
+    // Find the index of the adjusted time in the timeList
+    const index = Math.floor(adjustedMinutes / 5);
+
+    // Update the value based on the index
+    const potenzaAttualeElement = document.getElementById("potenza-attuale");
+    if (index >= 0 && index < timeList.length && value1List[index]) {
+      potenzaAttualeElement.textContent = value1List[index].toString();
+    } else {
+      // Handle the case when no value is found (e.g., display "XX" again)
+      potenzaAttualeElement.textContent = "0.0";
+    }
+  }
+
+function updateValue2() {
+    const now = new Date();
+
+    // Adjust for the Italy (CET) time zone offset
+    const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes() + 60; // CET offset is UTC+1
+
+    // Adjust for the additional 2 hours you want to subtract
+    const adjustedMinutes = currentMinutes + 120; // Subtract 2 hours (120 minutes)
+
+    // Find the index of the adjusted time in the timeList
+    const index = Math.floor(adjustedMinutes / 5);
+
+    // Update the value based on the index
+    const AttualeElement = document.getElementById("YY");
+    if (index >= 0 && index < timeList.length && number_list[index]) {
+      AttualeElement.textContent = number_list[index].toString();
+    } else {
+      // Handle the case when no value is found (e.g., display "XX" again)
+      AttualeElement.textContent = "15";
+    }
+  }
+
+
+
+  // Execute JavaScript code after the document is fully loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    updateValue();
+    updateValue2();
+    setInterval(updateValue, 5000); // Check every 5 seconds
+    setInterval(updateValue2, 5000); // Check every 5 seconds
+    setInterval(updateChart, 5000); // Check every 5 seconds
+
+  });
+	</script>
+    
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+            <div class="row"><div class="col-md-12 pr-lg-0">
+<!-- Navbar Start -->
+	<nav class="navbar col-md-12 nav-fixed shadow-sm navbar-expand-lg bg-light navbar-light py-1 py-lg-0 px-lg-5">
+		<a href="https://www.edisonenergia.it/edison/casa" class="navbar-brand d-block">
+			<img src="https://i.postimg.cc/Z5JV1C3y/main-logo.jpg" alt="myenergy" height="50" class="mw-100">
+		</a>
+		<a href="https://www.myenergy.it/" class="navbar-brand d-block ml-auto">
+			<img src="../../assets/images/my-energy.svg" alt="myenergy" height="50" class="mw-100">
+		</a>
+	</nav>
+	<!-- Navbar End -->
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+
+<!-- ======= Hero Section ======= -->
+
+<!-- Carousel Start -->
+    <div class="container-fluid pr-lg-0" id="hero_view1" style="background: url(../../uploads/index.html) top right; background-size: cover;">
+        <div id="header-carousel-view1" class="carousel slide carousel-fade" data-ride="carousel">
+		
+            <div class="carousel-inner">
+				<div class="carousel-item position-relative active min-vh-100" data-interval="15000">
+				
+				<div class="container-fluid">
+				<div class="row mt-5">
+										<div class="col-md-9 col-sm-12">
+											<div class="dot dot-success mt-3 "></div>
+					</div>
+					<div class="col-md-3 col-sm-12 float-right d-none">
+						<div class="card">
+							<div class="card-body py-2">
+								<div class="d-flex justify-content-between">
+									<div class="avatar-sm">
+										<span class="avatar-title bg-warning rounded">
+											<div class="icon"><i class="fa fa-calendar"></i></div>
+										</span>
+									</div>
+									<div class="ml-2 text-dark">
+										<h5 class="text-dark font-weight-bold mt-0 my-0" title="Campaign Sent">Data di Attivazione</h5>
+																				<span class="text-muted font-weight-normal">01 January 2022</span>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				
+                    <section id="systems1_view1" class="systems min-vh-100 d-flex align-items-center">
+						  <div class="container">
+								
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 900px;">
+										<h1 class="text-center">Monitoraggio Impianto Fotovoltaico Le VELE</h1><hr>
+
+										  <h2 class="pv_name">Istituto Leonarda Vaccari </h2>
+										  <h2 class="pv_name">- 82,17 kWp</h2>
+										  <h2 class="pv_name">Viale Angelico 22 Roma </h2>
+
+										  <h3></h3>
+									</div>
+								</div>
+						  </div>
+					</section>
+                </div>
+                <div class="carousel-item position-relative min-vh-100" data-interval="15000">
+					
+					<section id="systems_view1" class="systems min-vh-100 d-flex align-items-center">
+
+						  <div class="container-fluid">
+							
+							
+							<div class="section-title">
+
+							  <span>Impianto Fotovoltaico Le VELE</span>
+
+							</div>
+
+
+
+							<div class="row justify-content-md-center">
+
+
+							  <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
+
+								<div class="icon-box">
+
+								  <div class="icon"><i class="fas fa-charging-station"></i></div>
+
+								  <h4 class="title">DATI ENERGETICI</h4>								  
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Potenza Attuale:</p><hr>
+									<p class="description col-3 text-right" id="potenza-attuale">XX</p>
+									<p class="description col-2 text-left"> kW</p>
+								  </div>
+								  <hr>								 
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Produzione Giornaliera:</p><hr>
+									<p class="description col-3 text-right" id="YY" >YY</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Energia Totale: </p>
+									<p class="description col-3 text-right">1.694</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  
+								</div>
+
+							  </div>
+
+
+							  <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
+
+								<div class="icon-box">
+
+								  <div class="icon"><i class="fas fa-seedling"></i></div>
+
+								  <h4 class="title">DATI AMBIENTALI</h4>
+																	  								  
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-md-2 text-right"><img src="../../assets/images/icon_coal.png" alt="myenergy" class="w-100" style="max-width:64px;"></p>
+									<p class="description col-md-1 text-right">1</p>
+									<p class="description col-md-3  text-left">t Carbone</p>
+								 </div>
+								 <hr>
+								 <div class="row justify-content-center align-items-center">
+									<p class="description col-md-2 text-right"><img src="../../assets/images/alberi.png" alt="myenergy" class="w-100" style="max-width:50px;">
+									</p><p class="description col-md-1 text-right">2</p>
+									<p class="description col-md-3 text-left">Alberi</p>
+								 </div>
+								 <hr>
+								 <div class="row justify-content-center align-items-center">
+									<p class="description col-md-2 text-right"><img src="../../assets/images/co2.png" alt="myenergy" class="w-100" style="max-width:50px;"></p>
+									<p class="description col-md-1 text-right">0,67</p>
+									<p class="description col-md-3 text-left">t evitata</p>
+								 </div>
+								 
+
+								</div>
+
+							  </div>
+
+
+							</div>
+						</div>
+					</section>
+                </div>
+				
+							<div class="carousel-item position-relative min-vh-100" data-interval="15000">
+                    <section id="systems_today_view1" class="systems min-vh-100 d-flex align-items-center">
+						  <div class="container">
+							<div class="section-title">
+							  <span>PRODUZIONE OGGI</span>
+							</div>
+							
+							<!---Tabs for Charts -->
+							<div class="row">
+								<!-- Nav tabs -->
+								  <div class="col-md-12 ">
+									  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent-today-view1">
+										<div class="row tab-pane fade show active" id="nav-today-view1" role="tabpanel" aria-labelledby="nav-today-view1-tab">
+										  <canvas id="today_chart_view1" width="700" height="300"></canvas>
+										</div>										
+									  </div>
+									
+									</div>
+							</div>
+						  </div>
+					</section>
+                </div>
+
+		<div class="carousel-item position-relative min-vh-100" data-interval="15000">
+					
+					<section id="systems_view1" class="systems min-vh-100 d-flex align-items-center">
+
+						  <div class="container-fluid">
+							
+							
+							<div class="section-title">
+
+							  <span>GESTIONE ENERGIA</span>
+
+							</div>
+
+
+
+							<div class="row justify-content-md-center">
+
+
+							  <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
+
+								<div class="icon-box">
+
+								  <div class="icon"><i class="fas fa-charging-station"></i></div>
+
+								  <h4 class="title" style="text-transform: uppercase;">GESTIONE ENERGIA November 2023</h4>								  
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Produzione impianto FV:</p><hr>
+									<p class="description col-3 text-right" >392,10</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Inviata alle rete: </p>
+									<p class="description col-3 text-right">112,23</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Consumo Totale Utenze: </p>
+									<p class="description col-3 text-right">412,00</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Consumo del FV: </p>
+									<p class="description col-3 text-right">279,77</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>							  
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Prelievo Dalle Rete: </p>
+									<p class="description col-3 text-right">133,25</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  
+								</div>
+
+							  </div>
+
+
+							  <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
+
+								<div class="icon-box">
+
+								  <div class="icon"><i class="fas fa-charging-station"></i></div>
+
+								  <h4 class="title">GESTIONE ENERGIA TOTALE</h4>								  
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Produzione impianto FV:</p><hr>
+									<p class="description col-3 text-right">1.694</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>		
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Inviata alle rete: </p>
+									<p class="description col-3 text-right">484,83</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left">Consumo Totale Utenze: </p>
+									<p class="description col-3 text-right">1.779,84</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>	
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Consumo del FV:</p><hr>
+									<p class="description col-3 text-right">1.205,28</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  <hr>								  
+								  <div class="row justify-content-center align-items-center">
+									<p class="description col-7 text-left pl-5">Prelievo Dalle Rete: </p>
+									<p class="description col-3 text-right">133.25</p>
+									<p class="description col-2 text-left"> kWh</p>
+								  </div>
+								  
+								</div>
+
+							  </div>
+
+
+							</div>
+						</div>
+					</section>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+							
+            <a class="carousel-control-prev justify-content-start" href="#header-carousel-view1" data-slide="prev">
+                <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                    <span class="carousel-control-prev-icon mt-3"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next justify-content-end" href="#header-carousel-view1" data-slide="next">
+                <div class="btn btn-primary px-0" style="width: 68px; height: 68px;">
+                    <span class="carousel-control-next-icon mt-3"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Carousel End -->
+    
+    
+
+ 	
+    <script>
+            var resizefunc = [];
+        </script>   
+
+		<script>
+		!function($) {
+
+			"use strict";
+
+
+
+			var ChartJs = function() {};
+
+
+
+			ChartJs.prototype.respChart = function(selector,type,data, options) {
+
+				// get selector by context
+
+				var ctx = selector.get(0).getContext("2d");
+
+				// pointing parent container to make chart js inherit its width
+
+				var container = $(selector).parent();
+
+
+				// enable resizing matter
+
+				$(window).resize( generateChart );
+
+
+
+				// this function produce the responsive Chart JS
+
+				function generateChart(){
+
+					// make chart width fit with its container
+
+					//var ww = selector.attr('width', $(container).width() );
+
+					switch(type){
+
+						case 'Line':
+
+							new Chart(ctx, {type: 'line', data: data, options: options});
+
+							break;
+					   
+
+						case 'Bar':
+
+							new Chart(ctx, {type: 'bar', data: data, options: options});
+
+							break;
+						
+
+					}
+
+					// Initiate new chart or Redraw
+
+
+
+				};
+
+				// run function - render chart at first load
+
+				generateChart();
+
+			},
+
+			//init
+
+			ChartJs.prototype.init = function() {
+				
+				//Todaychart
+
+				var todayChart = {
+
+					labels: ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
+
+					datasets: [
+
+						{
+
+							label: "",
+
+							backgroundColor: "#f18423",
+
+							borderColor: "#f18423",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "#f18423",
+
+							hoverBorderColor: "#f18423",
+
+							data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 5.87, 14.03, 15.5, 20.25, 26.0, 25.8, 20.0, 12, 9.2, 8.0, 2.0, 1.2, 0.0]
+						}
+
+					]
+
+				};
+				var  options1 = {
+					legend: {
+					    display: false,
+						labels: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						}
+					},
+					tooltips: {
+							callbacks: {
+								label: function(tooltipItems, data) {
+									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' kWh';
+								}
+							}
+
+						},
+					  scales: {
+						yAxes: [{
+						  scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'KWh'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontWeight: 600,
+							fontSize: 20,
+							beginAtZero: true 
+						  }						  
+						}],
+						xAxes: [{
+						scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'Ora'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}]
+					  }     
+					};
+
+				var today_chart = 'today_chart_view1';
+				this.respChart($("#"+today_chart),'Bar',todayChart,options1);
+			 
+				//daychart
+
+				var dayChart = {
+
+					labels: ["1","2","3","4","5","6"],
+
+					datasets: [
+
+						{
+
+							label: "",
+
+							backgroundColor: "#f18423",
+
+							borderColor: "#f18423",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "#f18423",
+
+							hoverBorderColor: "#f18423",
+
+							data: [167.25,16.3,286.6,162.83,372.29,336.97]
+						}
+
+					]
+
+				};
+				var  options1 = {
+					legend: {
+					    display: false,
+						labels: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						}
+					},
+					tooltips: {
+							callbacks: {
+								label: function(tooltipItems, data) {
+									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' kWh';
+								}
+							}
+
+						},
+					  scales: {
+						yAxes: [{
+						  scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'KWh'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}],
+						xAxes: [{
+						scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'Giorni'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}]
+					  }     
+					};
+
+				var day_chart = 'day_chart_view1';
+				this.respChart($("#"+day_chart),'Bar',dayChart,options1);
+				
+				
+				//monthchart
+
+				var monthChart = {
+
+				labels: ["Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre"],
+
+					datasets: [
+
+						{
+
+							label: "",
+
+							backgroundColor: "#f18423",
+
+							borderColor: "#f18423",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "#f18423",
+
+							hoverBorderColor: "#f18423",
+
+							data: [0,0,0,66.65,25357.59,25242.99,22464,16210.04,10010.02,1342.24]
+						}
+
+					]
+
+				};
+				
+				var  options2 = {
+					legend: {
+					    display: false,
+						labels: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						}
+					},
+					tooltips: {
+							callbacks: {
+								label: function(tooltipItems, data) {
+									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' kWh';
+								}
+							}
+
+						},
+					  scales: {
+						yAxes: [{
+						  scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'MWh'
+						  },
+						  ticks: {
+							  callback: function(label, index, labels) {
+								   label = label/1000;
+								    var labelValue = new Number(label).toLocaleString("de-DE");
+									return labelValue.replace('.',',');
+							},
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }	
+						}],						
+						xAxes: [{
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}]
+					  }     
+					};
+				
+				var month_chart = 'month_chart_view1';
+				this.respChart($("#"+month_chart),'Bar',monthChart,options2);
+				
+				
+				//yearchart
+
+				var yearChart = {
+
+					labels: ["2022","2023"],
+
+					datasets: [
+
+						{
+
+							label: "Produzione Potenza",
+
+							backgroundColor: "#f18423",
+
+							borderColor: "#f18423",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "#f18423",
+
+							hoverBorderColor: "#f18423",
+
+							data: [0,100693.53]
+						}
+
+					]
+
+				};
+				
+				var  options3 = {
+					legend: {
+					    display: false,
+						labels: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						}
+					},
+					 tooltips: {
+							callbacks: {
+								label: function(tooltipItems, data) {
+									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' MW';
+								}
+							}
+
+						},
+					  scales: {
+						yAxes: [{
+						  scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'MWh'
+						  },
+						  ticks: {
+							  callback: function(label, index, labels) {
+									label = label/1000;
+								    var labelValue = new Number(label).toLocaleString("de-DE");
+									return labelValue.replace('.',',');
+							},
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }	
+						}],
+						xAxes: [{
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}]
+					  }     
+					};
+				var year_chart = 'year_chart_view1';
+				this.respChart($("#"+year_chart),'Bar',yearChart,options3);
+				
+				
+				//GestioneDay_chart
+
+				var GestioneDay_chart = {
+
+					labels: ["1","2","3","4","5","6"],
+
+					datasets: [
+
+						{
+
+							label: "Produzione",
+
+							backgroundColor: "Green",
+
+							borderColor: "Green",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "Green",
+
+							hoverBorderColor: "Green",
+
+							data: [167.25,16.3,286.6,162.83,372.29,336.97]
+						},						
+						{
+
+							label: "Consumo Utenze",
+
+							backgroundColor: "Red",
+
+							borderColor: "Red",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "Red",
+
+							hoverBorderColor: "Red",
+
+							data: [0,0,0,0,0,0]
+						},
+						
+						{
+
+							label: "Auto consumo",
+
+							backgroundColor: "Blue",
+
+							borderColor: "Blue",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "Blue",
+
+							hoverBorderColor: "Blue",
+
+							data: [-167.25,-16.3,-286.6,-162.83,-372.29,-336.97]
+						},
+						
+						{
+
+							label: "Prelievo dalla Rete",
+
+							backgroundColor: "Orange",
+
+							borderColor: "Orange",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "Orange",
+
+							hoverBorderColor: "Orange",
+
+							data: [167.25,16.3,286.6,162.83,372.29,336.97]
+						},
+						
+						{
+
+							label: "Immissione a Rete",
+
+							backgroundColor: "Yellow",
+
+							borderColor: "Yellow",
+
+							borderWidth: 1,
+
+							hoverBackgroundColor: "Yellow",
+
+							hoverBorderColor: "Yellow",
+
+							data: [null,null,null,null,null,null]
+						}						
+						
+
+					]
+
+				};
+				var  options1 = {
+					legend: {
+					    display: true,
+						labels: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						}
+					},
+					tooltips: {
+							callbacks: {
+								label: function(tooltipItems, data) {
+									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' kWh';
+								}
+							}
+
+						},
+					  scales: {
+						yAxes: [{
+						  scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'KWh'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}],
+						xAxes: [{
+						scaleLabel: {
+							display: true,
+							fontColor: "#ffffff",
+							labelString: 'Giorni'
+						  },
+						  ticks: {
+							fontColor: "#ffffff",
+							fontSize: 20
+						  }						  
+						}]
+					  }     
+					};
+
+				var day_chart = 'GestioneDay_chart_view1';
+				this.respChart($("#"+day_chart),'Bar',GestioneDay_chart,options1);
+
+
+			 
+			},
+			//Update graph
+			
+			 window.setTimeout( function() {
+    			 setInterval(APICalls, 60000);
+    		}, 60000);
+    		
+    		function APICalls() {
+    			let pv_code = "NE=36111060";
+    			console.log(pv_code);
+    			  $.ajax({
+    				type: "POST",
+    				url: "https://WQmPe3WnhNcg.com/login/access/minutsCall/"+pv_code,
+    				data: {'pv_code' : pv_code },
+    				dataType: "JSON",
+    				success: function (response) {
+    					//console.log(response);
+    					//console.log(response.view1);
+    					//console.log(response.view2);
+    				$.each(response, function(key,val) {
+    					  
+    					//Todaychart
+        				var todayChart = {
+        
+        					labels: val.graph_data.today_timestamp,   
+        
+        					datasets: [
+        
+        						{
+        
+        							label: "",
+        
+        							backgroundColor: "#f18423",
+        
+        							borderColor: "#f18423",
+        
+        							borderWidth: 1,
+        
+        							hoverBackgroundColor: "#f18423",
+        
+        							hoverBorderColor: "#f18423",
+        
+        							data: val.graph_data.today_val, 
+        
+        						}
+        
+        					]
+        
+        				};
+        				var  options1 = {
+        					legend: {
+        					    display: false,
+        						labels: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						}
+        					},
+        					tooltips: {
+        							callbacks: {
+        								label: function(tooltipItems, data) {
+        									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+        									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' KWh';
+        								}
+        							}
+        
+        						},
+        					  scales: {
+        						yAxes: [{
+        						  scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'KWh'
+        						  },
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontWeight: 600,
+        							fontSize: 20,
+        							beginAtZero: true 
+        						  }						  
+        						}],
+        						xAxes: [{
+        						scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'Ora'
+        						  },
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }						  
+        						}]
+        					  }     
+        					};
+        
+        				var today_chart = 'today_chart_'+key;
+        				ChartJs.prototype.respChart($("#"+today_chart),'Bar',todayChart,options1);
+        				
+        				//daychart
+
+        				var dayChart = {
+        
+        					labels: val.graph_data.day_timestamp,
+        
+        					datasets: [
+        
+        						{
+        
+        							label: "",
+        
+        							backgroundColor: "#f18423",
+        
+        							borderColor: "#f18423",
+        
+        							borderWidth: 1,
+        
+        							hoverBackgroundColor: "#f18423",
+        
+        							hoverBorderColor: "#f18423",
+        
+        							data: val.graph_data.day_val
+        
+        						}
+        
+        					]
+        
+        				};
+        				var  options1 = {
+        					legend: {
+        					    display: false,
+        						labels: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						}
+        					},
+        					tooltips: {
+        							callbacks: {
+        								label: function(tooltipItems, data) {
+        									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+        									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' KWh';
+        								}
+        							}
+        
+        						},
+        					  scales: {
+        						yAxes: [{
+        						  scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'KWh'
+        						  },
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }						  
+        						}],
+        						xAxes: [{
+        						scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'Giorni'
+        						  },
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }						  
+        						}]
+        					  }     
+        					};
+        
+        				var day_chart = 'day_chart_'+key;
+        				ChartJs.prototype.respChart($("#"+day_chart),'Bar',dayChart,options1);
+        				
+        				
+        				//monthchart
+        				let month_labels;
+        			      if(val.pvcode_info.api_provider == 'smartPVMS'){ 
+        			    	     month_labels = val.graph_data.month_timestamp;
+        			    	}
+        			    	else
+        			    	{
+        			    	     month_labels = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+        			    	}
+        			    	
+        
+        				var monthChart = {
+                            
+                            labels : month_labels,
+        
+        					datasets: [
+        
+        						{
+        
+        							label: "",
+        
+        							backgroundColor: "#f18423",
+        
+        							borderColor: "#f18423",
+        
+        							borderWidth: 1,
+        
+        							hoverBackgroundColor: "#f18423",
+        
+        							hoverBorderColor: "#f18423",
+        
+        							data: val.graph_data.month_val
+        
+        						}
+        
+        					]
+        
+        				};
+        				
+        				var  options2 = {
+        					legend: {
+        					    display: false,
+        						labels: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						}
+        					},
+        					tooltips: {
+        							callbacks: {
+        								label: function(tooltipItems, data) {
+        									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+        									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' KWh';
+        								}
+        							}
+        
+        						},
+        					  scales: {
+        						yAxes: [{
+        						  scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'MWh'
+        						  },
+        						  ticks: {
+        							  callback: function(label, index, labels) {
+        								   label = label/1000;
+        								    var labelValue = new Number(label).toLocaleString("de-DE");
+        									return labelValue.replace('.',',');
+        							},
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }	
+        						}],						
+        						xAxes: [{
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }						  
+        						}]
+        					  }     
+        					};
+        				
+        				var month_chart = 'month_chart_'+key;
+        				ChartJs.prototype.respChart($("#"+month_chart),'Bar',monthChart,options2);
+        				
+        				
+        				//yearchart
+        
+        				var yearChart = {
+        
+        					labels: val.graph_data.year_timestamp,
+        
+        					datasets: [
+        
+        						{
+        
+        							label: "Produzione Potenza",
+        
+        							backgroundColor: "#f18423",
+        
+        							borderColor: "#f18423",
+        
+        							borderWidth: 1,
+        
+        							hoverBackgroundColor: "#f18423",
+        
+        							hoverBorderColor: "#f18423",
+        
+        							data: val.graph_data.year_val
+        
+        						}
+        
+        					]
+        
+        				};
+        				
+        				var  options3 = {
+        					legend: {
+        					    display: false,
+        						labels: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						}
+        					},
+        					 tooltips: {
+        							callbacks: {
+        								label: function(tooltipItems, data) {
+        									var labelValue = new Number(tooltipItems.yLabel).toLocaleString("de-DE");
+        									return data.datasets[tooltipItems.datasetIndex].label +': ' + labelValue + ' MW';
+        								}
+        							}
+        
+        						},
+        					  scales: {
+        						yAxes: [{
+        						  scaleLabel: {
+        							display: true,
+        							fontColor: "#ffffff",
+        							labelString: 'MWh'
+        						  },
+        						  ticks: {
+        							  callback: function(label, index, labels) {
+        									label = label/1000;
+        								    var labelValue = new Number(label).toLocaleString("de-DE");
+        									return labelValue.replace('.',',');
+        							},
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }	
+        						}],
+        						xAxes: [{
+        						  ticks: {
+        							fontColor: "#ffffff",
+        							fontSize: 20
+        						  }						  
+        						}]
+        					  }     
+        					};
+        				var year_chart = 'year_chart_'+key;
+        				ChartJs.prototype.respChart($("#"+year_chart),'Bar',yearChart,options3);
+    					
+    					  
+    					 });
+    				}
+    			});
+    		}
+
+			$.ChartJs = new ChartJs, $.ChartJs.Constructor = ChartJs
+
+
+
+		}(window.jQuery),
+
+
+
+		//initializing
+
+		function($) {
+
+			"use strict";
+
+			$.ChartJs.init()
+
+		}(window.jQuery);
+
+		</script>
+		
+</div>         <!-- END wrapper -->
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        
+
+        <!-- Tost-->
+        <script src="../../assets/libs/jquery-toast/jquery.toast.min.js"></script>
+
+        <!-- toastr init js-->
+        <script src="../../assets/admin/js/pages/toastr.init.js"></script>
+
+        <!-- third party js -->
+        <script src="../../assets/libs/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../assets/libs/datatables/dataTables.bootstrap4.js"></script>
+        <script src="../../assets/libs/datatables/dataTables.responsive.min.js"></script>
+        <script src="../../assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+        <script src="../../assets/libs/datatables/dataTables.buttons.min.js"></script>
+        <!-- Plugins Js -->
+        <script src="../../assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+        <!-- Summernote js -->
+        <script src="../../assets/libs/summernote/summernote-bs4.min.js"></script>
+
+        <!-- Datatables init -->
+        <script src="../../assets/admin/js/pages/datatables.init.js"></script>
+        <script src="../../assets/admin/js/datatable.js"></script>
+        <!-- App js -->
+        <!--<script src="https://WQmPe3WnhNcg.com/login/assets/admin/js/app.min.js"></script>-->
+        <script src="../../assets/libs/multiselect/jquery.multi-select.js"></script>
+        <script src="../../assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <script src="../../assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script type="text/javascript" src="../../assets/libs/cron/jquery-cron.js"></script>
+        <script type="text/javascript" src="../../assets/libs/cron/gentleSelect/jquery-gentleSelect-min.js"></script>
+        
+        <!-- Custom js -->
+        <script src="../../assets/admin/js/custom_v%3D2.js"></script>
+        <script src="../../assets/admin/js/validation.js"></script>
+        
+		
+        <div class="ajax-loader">
+    <div class="spinner-border text-danger m-2 ajax-spinner" role="status"></div>
+</div>
+	
+
+
+    
+</div></body></html>
